@@ -4,44 +4,45 @@
   <meta charset="UTF-8">
   <title>JS Drum Kit</title>
   <link rel="stylesheet" href="style.css">
+  <script language="javascript" type="text/javascript" src="main.js"></script>
 </head>
 <body>
 
 
   <div class="keys">
-    <div data-key="65" class="key">
+    <div data-key="65" id="65" class="key" onclick="playSound(event);">
       <kbd>A</kbd>
       <span class="sound">clap</span>
     </div>
-    <div data-key="83" class="key">
+    <div data-key="83" id="83" class="key" onclick="playSound(event);">
       <kbd>S</kbd>
       <span class="sound">hihat</span>
     </div>
-    <div data-key="68" class="key">
+    <div data-key="68" class="key"  onclick="playSound(event);">
       <kbd>D</kbd>
       <span class="sound">kick</span>
     </div>
-    <div data-key="70" class="key">
+    <div data-key="70" class="key"  onclick="playSound(event);">
       <kbd>F</kbd>
       <span class="sound">openhat</span>
     </div>
-    <div data-key="71" class="key">
+    <div data-key="71" class="key"  onclick="playSound(event);">
       <kbd>G</kbd>
       <span class="sound">boom</span>
     </div>
-    <div data-key="72" class="key">
+    <div data-key="72" class="key"  onclick="playSound(event);">
       <kbd>H</kbd>
       <span class="sound">ride</span>
     </div>
-    <div data-key="74" class="key">
+    <div data-key="74" class="key"  onclick="playSound(event);">
       <kbd>J</kbd>
       <span class="sound">snare</span>
     </div>
-    <div data-key="75" class="key">
+    <div data-key="75" class="key"  onclick="playSound(event);">
       <kbd>K</kbd>
       <span class="sound">tom</span>
     </div>
-    <div data-key="76" class="key">
+    <div data-key="76" class="key"  onclick="playSound(event);">
       <kbd>L</kbd>
       <span class="sound">tink</span>
     </div>
@@ -58,7 +59,22 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
-
+  function playSound(event) {
+    debugger 
+     var currentDivElement = event.target;
+     var key = currentDivElement.getAttribute("data-key");
+     var audioElements = document.body.getElementsByTagName('audio');
+     for (i = 0; i < audioElements.length; i++) { 
+       var currentAudioElement = audioElements[i]
+       var currentAudioElementKey = currentAudioElement.getAttribute("data-key");       
+       if(currentAudioElementKey === key){         
+          var currentAudioElementSrc = currentAudioElement.getAttribute("src");
+          //play sound
+          var audio = new Audio(currentAudioElementSrc);
+          audio.play();
+       }
+      }
+  }
 </script>
 
 
